@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reaction time trainer</title>
+    <title>Reaction Time Trainer</title>
     <style>
         body {
             margin: 0;
             height: 100vh;
             background-color: blue; /* Cor inicial da página */
-            //transition: background-color 1s;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
+	    font-family: Arial, sans-serif;
+        }
+        #titulo {
+            color: white;
+            font-size: 30px;
+            margin-bottom: 20px;
         }
         #intervaloBtn, #intervaloInput {
             padding: 15px;
@@ -26,8 +31,9 @@
     </style>
 </head>
 <body>
-    <button id="intervaloBtn">Ajustar Intervalo (segundos)</button>
-    <input type="number" id="intervaloInput" placeholder="10 segundos" min="1">
+    <div id="titulo">Treine seu tempo de reação</div>
+    <input type="number" id="intervaloInput" placeholder="10 segundos" min="1" value="12">
+    <button id="intervaloBtn">Clique para ajustar o intervalo (segundos)</button>
     
     <script>
         let intervalo = 10000; // Intervalo padrão em milissegundos
