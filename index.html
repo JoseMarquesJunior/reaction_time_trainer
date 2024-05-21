@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Azul/Vermelha</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-color: blue; /* Cor inicial da página */
+            //transition: background-color 1s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #intervaloBtn, #intervaloInput {
+            padding: 15px;
+            font-size: 20px;
+            margin: 10px;
+        }
+        #intervaloInput {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <button id="intervaloBtn">Ajustar Intervalo (segundos)</button>
+    <input type="number" id="intervaloInput" placeholder="Segundos (Ex: 3)" min="1">
+    
+    <script>
+        let intervalo = 10000; // Intervalo padrão em milissegundos
+
+        // Função para alternar as cores
+        function alternarCores() {
+            document.body.style.backgroundColor = 'red'; // Muda para vermelho
+            setTimeout(() => {
+                document.body.style.backgroundColor = 'blue'; // Muda de volta para azul após 1 segundo
+                iniciarNovoCiclo(); // Inicia um novo ciclo após a cor voltar para azul
+            }, 1000); // 1000 ms = 1 segundo
+        }
+
+        // Função para iniciar um novo ciclo com intervalo aleatório
+        function iniciarNovoCiclo() {
+            const fatorAleatorio = Math.random(); // Gera um número aleatório entre 0.0 e 0.99
+            const tempoAjustado = intervalo * fatorAleatorio; // Ajusta o intervalo com o número aleatório
+            setTimeout(alternarCores, tempoAjustado); // Inicia o próximo ciclo
+        }
+
+        // Event listener para o botão de ajuste de intervalo
+        document.getElementById('intervaloBtn').addEventListener('click', () => {
+            const novoIntervalo = parseFloat(document.getElementById('intervaloInput').value) * 1000; // Converte para milissegundos
+            if (!isNaN(novoIntervalo) && novoIntervalo > 0) {
+                intervalo = novoIntervalo;
+                alert(`Intervalo ajustado para ${novoIntervalo / 1000} segundos.`);
+            } else {
+                alert('Por favor, insira um valor válido de intervalo em segundos.');
+            }
+        });
+
+        // Inicia o primeiro ciclo
+        iniciarNovoCiclo();
+    </script>
+</body>
+</html>
